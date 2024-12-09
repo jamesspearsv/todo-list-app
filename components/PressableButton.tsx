@@ -5,14 +5,9 @@ import {
   StyleProp,
   ViewStyle,
 } from "react-native";
-import { ReactNode } from "react";
-import colors from "@/constants/colors";
+import { PressableButtonProps } from "@/types/components";
 
-type PressableButtonProps = {
-  children: ReactNode;
-  onPress: () => void;
-  styleProp?: StyleProp<ViewStyle>;
-};
+// todo : Add swipe to dismiss gesture
 
 export default function PressableButton({
   children,

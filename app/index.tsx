@@ -6,9 +6,11 @@ import PressableButton from "@/components/PressableButton";
 import Feather from "@expo/vector-icons/Feather";
 import colors from "@/constants/colors";
 import defaultList from "@/constants/defaultList";
+import NewListItemModal from "@/components/NewListItemModal";
 
 export default function Index() {
-  const [todoList, setTodoList] = useState(defaultList);
+  const [todoList, setTodoList] = useState<TodoList>(defaultList);
+  const [modalVisible, setModalVisible] = useState(false);
 
   function handleItemUpdate(id: string) {
     const newList = [...todoList];
@@ -43,12 +45,16 @@ export default function Index() {
       </View>
       <View>
         <PressableButton
-          onPress={() => console.log("I was pressed")}
+          onPress={() => setModalVisible(true)}
           styleProp={styles.button}
         >
           <Feather name="plus" size={24} color={colors.white} />
         </PressableButton>
       </View>
+      <NewListItemModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
     </SafeAreaView>
   );
 }

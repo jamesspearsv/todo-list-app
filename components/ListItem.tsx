@@ -1,17 +1,7 @@
 import { Text, View, StyleSheet, Pressable } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 import colors from "@/constants/colors";
-
-type ListItem = {
-  id: string;
-  title: string;
-  completed: boolean;
-};
-
-type ListItemProps = {
-  item: ListItem;
-  updateItem: (id: string) => void;
-};
+import { ListItemProps } from "@/types/components";
 
 export default function ListItem({ item, updateItem }: ListItemProps) {
   return (

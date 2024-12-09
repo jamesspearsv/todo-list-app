@@ -1,4 +1,4 @@
-const defaultList = [
+const defaultList: TodoList = [
   {
     id: (Math.random() * Math.random()).toString(),
     title: "Learn react native",
