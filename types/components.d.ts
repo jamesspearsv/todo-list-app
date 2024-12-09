@@ -9,10 +9,11 @@ export type ListItemProps = {
 export type PressableButtonProps = {
   children: ReactNode;
   onPress: () => void;
-  styleProp?: StyleProp<ViewStyle>;
+  styleProp?: StyleProp<ViewStyle> | StyleProp<ViewStyle>[];
 };
 
 export type NewListItemModalProps = {
   modalVisible: boolean;
   setModalVisible: (visible: boolean) => void;
+  handleSubmit: (item: string) => void;
 };

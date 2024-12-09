@@ -10,7 +10,7 @@ import NewListItemModal from "@/components/NewListItemModal";
 
 export default function Index() {
   const [todoList, setTodoList] = useState<TodoList>(defaultList);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(true);
 
   function handleItemUpdate(id: string) {
     const newList = [...todoList];
@@ -21,6 +21,18 @@ export default function Index() {
       }
     }
 
+    setTodoList(newList);
+  }
+
+  function handleAddNewItem(item: string) {
+    const newItem: ListItem = {
+      id: (Math.random() * Math.random()).toString(36),
+      completed: false,
+      title: item,
+    };
+
+    const newList = [...todoList];
+    newList.push(newItem);
     setTodoList(newList);
   }
 
@@ -43,7 +55,7 @@ export default function Index() {
           }}
         />
       </View>
-      <View>
+      <View style={styles.addButtonContainer}>
         <PressableButton
           onPress={() => setModalVisible(true)}
           styleProp={styles.button}
@@ -54,6 +66,7 @@ export default function Index() {
       <NewListItemModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
+        handleSubmit={handleAddNewItem}
       />
     </SafeAreaView>
   );
@@ -79,5 +92,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 48,
     paddingVertical: 10,
     borderRadius: 16,
+  },
+  addButtonContainer: {
+    marginTop: 16,
   },
 });
