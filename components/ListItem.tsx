@@ -15,15 +15,18 @@ type ListItemProps = {
 
 export default function ListItem({ item, updateItem }: ListItemProps) {
   return (
-    <View style={[styles.itemContainer]}>
-      <Text style={[styles.itemText, item.completed && styles.completedItem]}>
-        {item.title}
-      </Text>
-      <Pressable onPress={() => updateItem(item.id)}>
+    <View>
+      <Pressable
+        onPress={() => updateItem(item.id)}
+        style={styles.itemContainer}
+      >
+        <Text style={[styles.itemText, item.completed && styles.completedItem]}>
+          {item.title}
+        </Text>
         <Feather
           name={!item.completed ? "square" : "check-square"}
           size={32}
-          color={colors.white}
+          color={!item.completed ? colors.white : colors.lightGrey}
         />
       </Pressable>
     </View>
@@ -48,8 +51,10 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   completedItem: {
+    color: colors.lightGrey,
     textDecorationLine: "line-through",
-    textDecorationColor: colors.white,
+    textDecorationColor: colors.lightGrey,
     textDecorationStyle: "solid",
+    fontStyle: "italic",
   },
 });
