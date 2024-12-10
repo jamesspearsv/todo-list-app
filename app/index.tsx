@@ -10,7 +10,7 @@ import NewListItemModal from "@/components/NewListItemModal";
 
 export default function Index() {
   const [todoList, setTodoList] = useState<TodoList>(defaultList);
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
 
   function handleItemUpdate(id: string) {
     const newList = [...todoList];
@@ -46,7 +46,9 @@ export default function Index() {
         paddingHorizontal: 8,
       }}
     >
-      <Text style={styles.pageHeading}>Today's To-Do List</Text>
+      <View style={styles.headingContainer}>
+        <Text style={styles.heading}>Today's To-Do List</Text>
+      </View>
       <View style={styles.listContainer}>
         <FlatList
           data={todoList}
@@ -58,7 +60,7 @@ export default function Index() {
       <View style={styles.addButtonContainer}>
         <PressableButton
           onPress={() => setModalVisible(true)}
-          styleProp={styles.button}
+          styleProp={[styles.button]}
         >
           <Feather name="plus" size={24} color={colors.white} />
         </PressableButton>
@@ -73,14 +75,19 @@ export default function Index() {
 }
 
 const styles = StyleSheet.create({
-  pageHeading: {
+  headingContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    borderBottomColor: colors.lightGrey,
+    borderBottomWidth: 1,
+    width: "100%",
+  },
+  heading: {
     fontSize: 28,
     fontWeight: "bold",
     marginBottom: 8,
     paddingVertical: 8,
-    borderBottomColor: colors.lightGrey,
-    borderBottomWidth: 1,
-    width: "100%",
     textAlign: "center",
   },
   listContainer: {

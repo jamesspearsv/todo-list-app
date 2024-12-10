@@ -11,6 +11,8 @@ export default function NewListItemModal({
   setModalVisible,
   handleSubmit,
 }: NewListItemModalProps) {
+  // todo : Add swipe to dismiss gesture
+
   const [item, setItem] = useState<string | null>(null);
 
   function handleTextChange(text: string) {
@@ -35,7 +37,7 @@ export default function NewListItemModal({
         <View style={styles.closeContainer}>
           <PressableButton
             onPress={() => setModalVisible(false)}
-            styleProp={styles.closeButton}
+            styleProp={[styles.closeButton]}
           >
             <Feather name="x" size={28} color={colors.white} />
           </PressableButton>

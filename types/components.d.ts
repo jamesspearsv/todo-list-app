@@ -9,7 +9,7 @@ export type ListItemProps = {
 export type PressableButtonProps = {
   children: ReactNode;
   onPress: () => void;
-  styleProp?: StyleProp<ViewStyle> | StyleProp<ViewStyle>[];
+  styleProp?: StyleProp<ViewStyle>[];
 };
 
 export type NewListItemModalProps = {
