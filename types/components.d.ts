@@ -14,6 +14,6 @@ export type PressableButtonProps = {
 
 export type NewListItemModalProps = {
   modalVisible: boolean;
-  setModalVisible: (visible: boolean) => void;
+  dismissModal: () => void;
   handleSubmit: (item: string) => void;
 };

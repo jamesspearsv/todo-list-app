@@ -8,6 +8,7 @@ import {
   Feather,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import colors from "@/constants/colors";
 import NewListItemModal from "@/components/NewListItemModal";
@@ -28,6 +29,10 @@ export default function Index() {
     setTodoList(newList);
   }
 
+  function dismissModal() {
+    setModalVisible(false);
+  }
+
   function handleAddNewItem(item: string) {
     const newItem: ListItem = {
       id: (Math.random() * Math.random()).toString(36),
@@ -41,54 +46,56 @@ export default function Index() {
   }
 
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        paddingVertical: 16,
-        paddingHorizontal: 8,
-      }}
-    >
-      <View style={styles.headingContainer}>
-        <MaterialCommunityIcons
-          name="bullseye-arrow"
-          size={42}
-          color={colors.grey}
-        />
-        <Text style={styles.heading}>Today's Tasks</Text>
-      </View>
-      <View style={styles.listContainer}>
-        {todoList.length === 0 ? (
-          <View style={styles.placeholderContainer}>
-            <FontAwesome5 name="frown" size={64} color={colors.lightGrey} />
-            <Text style={styles.placeholderText}>
-              Add something to you list to get started
-            </Text>
-          </View>
-        ) : (
-          <FlatList
-            data={todoList}
-            renderItem={({ item }) => {
-              return <ListItem item={item} updateItem={handleItemUpdate} />;
-            }}
+    <GestureHandlerRootView>
+      <SafeAreaView
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          paddingVertical: 16,
+          paddingHorizontal: 8,
+        }}
+      >
+        <View style={styles.headingContainer}>
+          <MaterialCommunityIcons
+            name="bullseye-arrow"
+            size={42}
+            color={colors.grey}
           />
-        )}
-      </View>
-      <View style={styles.addButtonContainer}>
-        <PressableButton
-          onPress={() => setModalVisible(true)}
-          styleProp={[styles.button]}
-        >
-          <Feather name="plus" size={24} color={colors.white} />
-        </PressableButton>
-      </View>
-      <NewListItemModal
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-        handleSubmit={handleAddNewItem}
-      />
-    </SafeAreaView>
+          <Text style={styles.heading}>Today's Tasks</Text>
+        </View>
+        <View style={styles.listContainer}>
+          {todoList.length === 0 ? (
+            <View style={styles.placeholderContainer}>
+              <FontAwesome5 name="frown" size={64} color={colors.lightGrey} />
+              <Text style={styles.placeholderText}>
+                Add something to you list to get started
+              </Text>
+            </View>
+          ) : (
+            <FlatList
+              data={todoList}
+              renderItem={({ item }) => {
+                return <ListItem item={item} updateItem={handleItemUpdate} />;
+              }}
+            />
+          )}
+        </View>
+        <View style={styles.addButtonContainer}>
+          <PressableButton
+            onPress={() => setModalVisible(true)}
+            styleProp={[styles.button]}
+          >
+            <Feather name="plus" size={24} color={colors.white} />
+          </PressableButton>
+        </View>
+        <NewListItemModal
+          modalVisible={modalVisible}
+          dismissModal={dismissModal}
+          handleSubmit={handleAddNewItem}
+        />
+      </SafeAreaView>
+    </GestureHandlerRootView>
   );
 }
 
